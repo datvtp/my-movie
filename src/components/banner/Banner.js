@@ -1,6 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import { SwiperSlide, Swiper } from "swiper/react";
+import { Navigation } from "swiper";
 
 import { fetcher } from "../../config";
 
@@ -14,7 +15,12 @@ const Banner = () => {
 
   return (
     <section className="banner h-[500px] page-container mb-20">
-      <Swiper grabCursor slidesPerView={"auto"} navigation>
+      <Swiper
+        grabCursor
+        slidesPerView={"auto"}
+        navigation
+        modules={[Navigation]}
+      >
         {movies.length > 0 &&
           movies.map((item) => (
             <SwiperSlide key={item.id}>
