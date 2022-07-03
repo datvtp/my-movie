@@ -5,6 +5,7 @@ import "swiper/scss";
 
 import Main from "./components/layout/Main";
 import HomePage from "./pages/HomePage";
+import MovieDetailsPage from "./pages/MovieDetailsPage";
 import MoviesPage from "./pages/MoviesPage";
 
 function App() {
@@ -25,6 +26,14 @@ function App() {
             element={
               <>
                 <MoviesPage />
+              </>
+            }
+          />
+          <Route
+            path="/movie/:movieId"
+            element={
+              <>
+                <MovieDetailsPage />
               </>
             }
           />
