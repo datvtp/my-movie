@@ -4,6 +4,7 @@ import useSWR from "swr";
 import { fetcher, API_KEY } from "../config";
 import MovieCard from "../components/movie/MovieCard";
 import useDebounce from "../hooks/useDebounce";
+import Loading from "../components/loading/Loading";
 
 const MoviesPage = () => {
   const [filter, setFilter] = useState("");
@@ -15,7 +16,7 @@ const MoviesPage = () => {
     setFilter(e.target.value);
   };
 
-  const { data } = useSWR(url, fetcher);
+  const { data, error } = useSWR(url, fetcher);
 
   useEffect(() => {
     if (filterDebounce) {
@@ -26,6 +27,8 @@ const MoviesPage = () => {
       setUrl(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
     }
   }, [filterDebounce]);
+
+  const isLoading = !data && !error;
 
   const movies = data?.results || [];
 
@@ -57,8 +60,10 @@ const MoviesPage = () => {
           </svg>
         </button>
       </div>
+      {isLoading && <Loading />}
       <div className="grid grid-cols-4 gap-10">
-        {movies.length > 0 &&
+        {!isLoading &&
+          movies.length > 0 &&
           movies.map((item) => <MovieCard key={item.id} item={item} />)}
       </div>
     </div>
