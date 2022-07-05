@@ -22,7 +22,7 @@ function App() {
             }
           />
           <Route
-            path="/movies"
+            path="/movie"
             element={
               <>
                 <MoviesPage />
