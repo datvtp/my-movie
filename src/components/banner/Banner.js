@@ -4,14 +4,11 @@ import useSWR from "swr";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 
-import { fetcher, API_KEY } from "../../config";
+import { fetcher, tmdbAPI } from "../../config";
 import Button from "../button/Button";
 
 const Banner = () => {
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`,
-    fetcher
-  );
+  const { data } = useSWR(tmdbAPI.getMovieList("upcoming"), fetcher);
 
   const movies = data?.results || [];
 
@@ -47,7 +44,7 @@ const BannerItem = ({ item }) => {
     <div className=" w-full h-full rounded-lg relative">
       <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-lg"></div>
       <img
-        src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
+        src={tmdbAPI.getImage("original", backdrop_path)}
         alt=""
         className="w-full h-full object-cover rounded-lg object-top"
       />
