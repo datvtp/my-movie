@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
 import useSWR from "swr";
+import ReactPaginate from "react-paginate";
+import React, { useEffect, useState } from "react";
 
 import { fetcher, tmdbAPI } from "../config";
-import MovieCard from "../components/movie/MovieCard";
 import useDebounce from "../hooks/useDebounce";
+import MovieCard from "../components/movie/MovieCard";
 import Loading from "../components/loading/Loading";
 
 const itemsPerPage = 20;

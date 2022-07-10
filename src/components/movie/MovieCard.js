@@ -1,6 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { tmdbAPI } from "../../config";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../button/Button";
 

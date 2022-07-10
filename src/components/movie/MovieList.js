@@ -1,7 +1,7 @@
-import React from "react";
-import { SwiperSlide, Swiper } from "swiper/react";
 import useSWR from "swr";
+import React from "react";
 import PropTypes from "prop-types";
+import { SwiperSlide, Swiper } from "swiper/react";
 
 import { fetcher, tmdbAPI } from "../../config";
 

@@ -1,11 +1,11 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 import useSWR from "swr";
-import { SwiperSlide, Swiper } from "swiper/react";
+import React from "react";
 import { Navigation } from "swiper";
+import { useNavigate } from "react-router-dom";
+import { SwiperSlide, Swiper } from "swiper/react";
 
-import { fetcher, tmdbAPI } from "../../config";
 import Button from "../button/Button";
+import { fetcher, tmdbAPI } from "../../config";
 
 const Banner = () => {
   const { data } = useSWR(tmdbAPI.getMovieList("upcoming"), fetcher);

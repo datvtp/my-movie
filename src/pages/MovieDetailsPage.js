@@ -1,7 +1,7 @@
+import useSWR from "swr";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { SwiperSlide, Swiper } from "swiper/react";
-import useSWR from "swr";
 
 import { fetcher, tmdbAPI } from "../config";
 import MovieCard from "../components/movie/MovieCard";
