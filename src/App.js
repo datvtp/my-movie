@@ -1,44 +1,48 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import "swiper/css/navigation";
 import "swiper/scss";
 
 import Main from "./components/layout/Main";
-import HomePage from "./pages/HomePage";
-import MovieDetailsPage from "./pages/MovieDetailsPage";
-import MoviesPage from "./pages/MoviesPage";
+import Loading from "./components/loading/Loading";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage"));
+const MovieDetailsPage = lazy(() => import("./pages/MovieDetailsPage"));
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route element={<Main />}>
-          <Route
-            path="/"
-            element={
-              <>
-                <HomePage />
-              </>
-            }
-          />
-          <Route
-            path="/movie"
-            element={
-              <>
-                <MoviesPage />
-              </>
-            }
-          />
-          <Route
-            path="/movie/:movieId"
-            element={
-              <>
-                <MovieDetailsPage />
-              </>
-            }
-          />
-        </Route>
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route element={<Main />}>
+            <Route
+              path="/"
+              element={
+                <>
+                  <HomePage />
+                </>
+              }
+            />
+            <Route
+              path="/movie"
+              element={
+                <>
+                  <MoviesPage />
+                </>
+              }
+            />
+            <Route
+              path="/movie/:movieId"
+              element={
+                <>
+                  <MovieDetailsPage />
+                </>
+              }
+            />
+          </Route>
+        </Routes>
+      </Suspense>
     </>
   );
 }
