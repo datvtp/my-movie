@@ -1,7 +1,8 @@
 import React from "react";
-import { tmdbAPI } from "../../config";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
+import { tmdbAPI } from "../../config";
 import Button from "../button/Button";
 
 const MovieCard = ({ item }) => {
@@ -32,6 +33,16 @@ const MovieCard = ({ item }) => {
       </div>
     </div>
   );
+};
+
+MovieCard.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.number,
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number,
+  }),
 };
 
 export default MovieCard;
