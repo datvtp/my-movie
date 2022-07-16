@@ -32,9 +32,15 @@ const Banner = () => {
 };
 
 const BannerItem = ({ item }) => {
-  const { backdrop_path, title, id } = item;
+  const { id, backdrop_path, title } = item;
+
+  const { data } = useSWR(tmdbAPI.getMovieDetails(id), fetcher);
 
   const navigate = useNavigate();
+
+  if (!data) return null;
+
+  const { genres } = data;
 
   const handleOnClickWatchNow = () => {
     navigate(`/movie/${id}`);
@@ -50,17 +56,18 @@ const BannerItem = ({ item }) => {
       />
       <div className="absolute left-5 bottom-5 w-full text-white">
         <h2 className="font-bold text-3xl mb-5">{title}</h2>
-        <div className="flex items-center gap-x-3 mb-8">
-          <span className="py-2 px-4 border border-white rounded-md">
-            Adventure
-          </span>
-          <span className="py-2 px-4 border border-white rounded-md">
-            Adventure
-          </span>
-          <span className="py-2 px-4 border border-white rounded-md">
-            Adventure
-          </span>
-        </div>
+        {genres && genres.length > 0 && (
+          <div className="flex items-center gap-x-3 mb-8">
+            {genres.map((item) => (
+              <span
+                className="py-2 px-4 border border-white rounded-md"
+                key={item.id}
+              >
+                {item.name}
+              </span>
+            ))}
+          </div>
+        )}
         <Button onClick={handleOnClickWatchNow}>Watch now</Button>
       </div>
     </div>
